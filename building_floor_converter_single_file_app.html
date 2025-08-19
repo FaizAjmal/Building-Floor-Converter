@@ -1,0 +1,42 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Floor Converter</title>
+</head>
+<body>
+  <h1>Building Floor Converter</h1>
+  <p>Convert between American and European floor numbering systems.</p>
+
+  <label for="input">Enter floor:</label>
+  <input type="text" id="input" placeholder="e.g. 1, G, B1">
+  <button onclick="convertFloor()">Convert</button>
+
+  <p id="result"></p>
+
+  <script>
+    function convertFloor() {
+      let val = document.getElementById("input").value.trim();
+      let result = "";
+
+      if (/^B\d+$/.test(val)) {
+        result = "Basement level: same in both systems (" + val + ")";
+      } else if (val.toUpperCase() === "G" || val === "0") {
+        result = "US: 1st Floor, EU: Ground (0)";
+      } else if (!isNaN(parseInt(val))) {
+        let num = parseInt(val);
+        let us = num;
+        let eu = num - 1;
+        result = "US: " + us + " → EU: " + eu;
+      } else {
+        result = "Invalid input. Try again.";
+      }
+
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+</body>
+</html>
+```
