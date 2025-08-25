@@ -1,15 +1,125 @@
+/* Simple, clean styles — no frameworks, student-level */
+
+:root {
+  --bg: #f7f7f9;
+  --text: #222;
+  --muted: #666;
+  --card: #ffffff;
+  --border: #e6e6ee;
+  --accent: #2563eb; /* calm blue */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  text-align: center;
-  margin: 40px;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 24px;
+  display: grid;
+  place-items: start center;
 }
 
+.main {
+  width: 100%;
+  max-width: 640px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* If your h1 is not wrapped, it's fine — these are generic tags */
 h1 {
-  color: #333;
+  margin: 0 0 10px;
+  font-size: 1.5rem;
 }
 
-input, button {
-  padding: 8px;
-  margin: 5px;
+p.desc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+button {
+  padding: 10px 14px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.02s ease-in-out, filter 0.15s ease, background 0.15s;
+}
+
+button:hover {
+  filter: brightness(1.03);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Result box */
+#result {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: #fbfbfe;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 40px;
+}
+
+/* Small helper text under input (optional) */
+.small {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* Mobile-friendly */
+@media (max-width: 520px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  button {
+    width: 100%;
+  }
 }
