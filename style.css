@@ -1,13 +1,10 @@
-/* Simple, clean styles — no frameworks, student-level */
-
 :root {
   --bg: #f7f7f9;
   --text: #222;
   --muted: #666;
   --card: #ffffff;
   --border: #e6e6ee;
-  --accent: #2563eb; /* calm blue */
-}
+  --accent: #2563eb; 
 
 * { box-sizing: border-box; }
 
@@ -36,7 +33,6 @@ body {
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
 
-/* If your h1 is not wrapped, it's fine — these are generic tags */
 h1 {
   margin: 0 0 10px;
   font-size: 1.5rem;
@@ -107,14 +103,12 @@ button:active {
   min-height: 40px;
 }
 
-/* Small helper text under input (optional) */
 .small {
   color: var(--muted);
   font-size: 0.85rem;
   margin-top: 6px;
 }
 
-/* Mobile-friendly */
 @media (max-width: 520px) {
   .form-row {
     grid-template-columns: 1fr;
