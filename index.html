@@ -1,58 +1,65 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <div class="wrapper">
-  <header>
-    <h1>Building Floor Converter</h1>
-    <p>Convert between American (ground=1) and European (ground=0).</p>
-  </header>
-
-  <label class="label" for="input">Enter floor</label>
-  <div class="row">
-    <input id="input" type="text" placeholder="Try: G, 1, 2, B1, -2">
-    <button onclick="convertFloor()">Convert</button>
-  </div>
-
-  <div id="result"></div>
-  <div class="hint">Basements like B1/B2 stay the same depth.</div>
-</div>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Building Floor Converter</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Building Floor Converter</h1>
-  <p>Convert between American and European floor numbering systems.</p>
+  <div class="wrapper">
+    <header>
+      <h1>Building Floor Converter</h1>
+      <p>Convert between American and European floor numbering systems easily.</p>
+    </header>
 
-  <label for="input">Enter floor:</label>
-  <input type="text" id="input" placeholder="e.g. 1, G, B1">
-  <button onclick="convertFloor()">Convert</button>
+    <main>
+      <label class="label" for="system">Choose system:</label>
+      <select id="system">
+        <option value="us">American (US)</option>
+        <option value="eu">European (EU)</option>
+      </select>
 
-  <p id="result"></p>
+      <label class="label" for="floor">Enter floor number:</label>
+      <div class="row">
+        <input type="text" id="floor" placeholder="e.g. 1, 2, 3...">
+        <button onclick="convertFloor()">Convert</button>
+      </div>
+
+      <div id="result"></div>
+      <p class="hint">Note: In US, ground floor = 1st floor (EU = Ground = 0).</p>
+    </main>
+
+    <div class="badges">
+      <div class="badge">Made with ♥️</div>
+      <div class="badge">HTML + CSS + JS</div>
+    </div>
+  </div>
 
   <script>
     function convertFloor() {
-      let val = document.getElementById("input").value.trim();
-      let result = "";
+      const system = document.getElementById("system").value;
+      const floorInput = document.getElementById("floor").value.trim();
+      const resultDiv = document.getElementById("result");
 
-      if (/^B\d+$/.test(val)) {
-        result = "Basement level: same in both systems (" + val + ")";
-      } else if (val.toUpperCase() === "G" || val === "0") {
-        result = "US: 1st Floor, EU: Ground (0)";
-      } else if (!isNaN(parseInt(val))) {
-        let num = parseInt(val);
-        let us = num;
-        let eu = num - 1;
-        result = "US: " + us + " → EU: " + eu;
-      } else {
-        result = "Invalid input. Try again.";
+      if (floorInput === "" || isNaN(floorInput)) {
+        resultDiv.textContent = "Please enter a valid number.";
+        return;
       }
 
-      document.getElementById("result").innerText = result;
+      let floor = parseInt(floorInput, 10);
+      let converted;
+
+      if (system === "us") {
+        // US → EU
+        converted = floor - 1;
+        resultDiv.textContent = `EU system: Floor ${converted}`;
+      } else {
+        // EU → US
+        converted = floor + 1;
+        resultDiv.textContent = `US system: Floor ${converted}`;
+      }
     }
   </script>
 </body>
 </html>
-```
