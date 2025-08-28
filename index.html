@@ -2,6 +2,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <div class="wrapper">
+  <header>
+    <h1>Building Floor Converter</h1>
+    <p>Convert between American (ground=1) and European (ground=0).</p>
+  </header>
+
+  <label class="label" for="input">Enter floor</label>
+  <div class="row">
+    <input id="input" type="text" placeholder="Try: G, 1, 2, B1, -2">
+    <button onclick="convertFloor()">Convert</button>
+  </div>
+
+  <div id="result"></div>
+  <div class="hint">Basements like B1/B2 stay the same depth.</div>
+</div>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Building Floor Converter</title>
